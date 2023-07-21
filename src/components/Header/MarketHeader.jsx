@@ -1,13 +1,8 @@
 import {
-  Image,
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+  Image, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
 import React from 'react';
-import {appIcons, colors, size} from '../../utilities';
+import { appIcons, colors, size } from '../../utilities';
 
 const styles = StyleSheet.create({
   main: {
@@ -15,7 +10,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: Platform.OS === 'android' ? 20 : 50,
+    paddingTop: 50,
     paddingHorizontal: 20,
     paddingBottom: 20,
   },
@@ -32,10 +27,10 @@ const styles = StyleSheet.create({
   },
 });
 
-function MarketHeader() {
+function MarketHeader({ title }) {
   return (
     <View style={styles.main}>
-      <Text style={styles.headerText}>Markets</Text>
+      <Text style={styles.headerText}>{title}</Text>
       <TouchableOpacity>
         <Image source={appIcons.search} style={styles.iconStyle} />
       </TouchableOpacity>
@@ -43,4 +38,4 @@ function MarketHeader() {
   );
 }
 
-export {MarketHeader};
+export { MarketHeader };

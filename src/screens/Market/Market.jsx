@@ -7,7 +7,7 @@ import MarketTopTab from '../../navigation/TopTabBars/MarketTopTab';
 function Market() {
   return (
     <View style={styles.main}>
-      <MarketHeader />
+      <MarketHeader title="Markets"/>
       <MarketTopTab />
     </View>
   );

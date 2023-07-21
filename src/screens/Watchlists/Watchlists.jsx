@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import {
   Text,
   SafeAreaView,
@@ -6,66 +6,59 @@ import {
   ActivityIndicator,
   View,
   Image,
+  TouchableOpacity,
 } from 'react-native';
-import {useGetMoviesQuery} from '../../api/moviesApi';
+import { useGetMoviesQuery } from '../../api/moviesApi';
 import styles from './styles';
-import {colors} from '../../utilities';
+import { appIcons, colors, watchlist } from '../../utilities';
+import { MarketHeader } from '../../components';
+import { WatchCard } from '../../components/Cards/WatchCard';
 
-function Watchlists() {
-  const {
-    data: movies,
-    isLoading,
-    isFetching,
-    refetch,
-    error,
-  } = useGetMoviesQuery();
-
-  useEffect(() => {
-    refetch(); // Fetch the initial data
-  }, [refetch]);
-
-  const handleRefresh = () => {
-    refetch(); // Fetch the updated data
-  };
-
-  const renderFooter = () => {
-    if (isFetching) {
-      return <ActivityIndicator size="large" />;
-    }
-    return null;
-  };
-
-  const renderItem = ({item}) => (
-    <View style={{padding: 0}}>
-      <View style={styles.container}>
-        <View style={styles.imageContainer}>
-          {item.url ? (
-            <Image style={styles.image} source={{uri: item.url}} />
-          ) : null}
-        </View>
-        <Text style={styles.title}>{item?.title}</Text>
+function Header() {
+  return (
+    <View style={styles.headView}>
+      <View style={styles.subView}>
+        <Image source={appIcons.edit} style={styles.iconStyle} />
+        <Text style={styles.headerText}>Edit list</Text>
+      </View>
+      <View style={styles.subView}>
+        <Text style={styles.subheaderText}>Sort by price</Text>
+        <Image source={appIcons.arrow} style={styles.iconStyl} />
       </View>
     </View>
   );
+}
 
-  useEffect(() => {
-    console.log('[movies]', movies);
-    console.log('[error]', error);
-  }, [movies]);
+const renderItem = ({ item, index }) => <WatchCard item={item} index={index} />;
 
+function Watchlists() {
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: colors.white}}>
-      <FlatList
-        data={movies}
-        renderItem={renderItem}
-        keyExtractor={item => String(item.id)}
-        onEndReachedThreshold={0.5}
-        ListFooterComponent={renderFooter}
-        refreshing={isLoading}
-        onRefresh={handleRefresh}
-      />
-    </SafeAreaView>
+    <View style={styles.main}>
+      <MarketHeader title="Watchlist" />
+      <Header />
+      <View>
+        <FlatList
+          data={watchlist}
+          numColumns={2}
+          showsHorizontalScrollIndicator={false}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => item + index.toString()}
+        />
+      </View>
+      <View style={styles.buttonsView}>
+        <TouchableOpacity style={styles.buttonBrdrStyle}>
+          <Image source={appIcons.add} style={styles.iconStyle} />
+          <Text style={styles.symbolText}>Add Symbol</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.buttonStyle}>
+          <Text style={styles.claimText}>Data disclaimer</Text>
+          <Image source={appIcons.arrow} style={styles.arrowStyle} />
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 }
 
 export default Watchlists;
+
+

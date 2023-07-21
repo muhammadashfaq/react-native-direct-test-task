@@ -172,4 +172,43 @@ const marketValues = [
   },
 ];
 
-export {plans, financialPlan, ratioDetails, timeFilters, marketValues};
+const watchlist = [
+  {
+    id: 0,
+    icon: appIcons.apple,
+    name: 'GJI',
+    company: 'DOW JONES',
+    percent: +73.1,
+    value: 1.61,
+    points: '34,345.56',
+  },
+  {
+    id: 1,
+    icon: appIcons.google,
+    name: 'IXIC',
+    company: 'NASDAQ',
+    percent: -26.13,
+    value: -1.4,
+    points: '13,865.65',
+  },
+  {
+    id: 2,
+    icon: appIcons.apple,
+    name: 'APPL',
+    company: 'Apple Inc',
+    value: +26.13,
+    percent: 1.4,
+    points: '172.42',
+  },
+  {
+    id: 3,
+    icon: appIcons.google,
+    name: 'GOOG',
+    company: 'Alphabet Inc',
+    value: -26.13,
+    percent: -1.4,
+    points: '2,703.65',
+  },
+];
+
+export {plans, financialPlan, ratioDetails, timeFilters, marketValues,watchlist};

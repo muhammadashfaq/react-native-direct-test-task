@@ -52,6 +52,7 @@ function Tasi() {
             showsHorizontalScrollIndicator={false}
             renderItem={renderItemRatio}
             ListFooterComponent={ListFooterComponent}
+            keyExtractor={(item, index) => item + index.toString()}
           />
         </View>
         <View style={styles.headerView}>
@@ -65,6 +66,7 @@ function Tasi() {
             showsHorizontalScrollIndicator={false}
             renderItem={renderItemTime}
             contentContainerStyle={styles.timeContentContainer}
+            keyExtractor={(item, index) => item + index.toString()}
           />
         </View>
         <View>
@@ -75,6 +77,7 @@ function Tasi() {
             renderItem={renderMarketItem}
             contentContainerStyle={styles.marketContentContainer}
             style={styles.marketStyle}
+            keyExtractor={(item, index) => item + index.toString()}
           />
           <ListFooterComponent isDivider={false} />
         </View>
